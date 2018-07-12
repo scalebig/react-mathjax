@@ -34,6 +34,8 @@ class Context extends React.Component {
   onLoad() {
     const options = this.props.options
 
+    Object.assign(MathJax.Ajax.config.path, this.props.configPaths)
+
     MathJax.Hub.Config(options)
 
     MathJax.Hub.Register.StartupHook('End', () => {
@@ -78,7 +80,8 @@ Context.propTypes = {
   delay: PropTypes.number,
   options: PropTypes.object,
   loading: PropTypes.node,
-  noGate: PropTypes.bool
+  noGate: PropTypes.bool,
+  configPaths: PropTypes.object
 }
 
 Context.childContextTypes = {
@@ -92,7 +95,8 @@ Context.defaultProps = {
   delay: 0,
   options: {},
   loading: null,
-  noGate: false
+  noGate: false,
+  configPaths: {}
 }
 
 export default Context
