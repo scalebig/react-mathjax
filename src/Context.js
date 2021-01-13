@@ -25,12 +25,12 @@ class Context extends React.Component {
     const script = this.props.script
     const allScripts = Array.from(document.getElementsByTagName('script'))
 
-    if (allScripts.find(el => el.src === script)) {
-      return true
-    }
-
     if (!script) {
       return this.onLoad()
+    }
+    
+    if (allScripts.find(el => el.src === script)) {
+      return true
     }
 
     loadScript(script, this.onLoad)
