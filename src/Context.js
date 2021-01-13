@@ -23,6 +23,11 @@ class Context extends React.Component {
 
   componentDidMount() {
     const script = this.props.script
+    const allScripts = Array.from(document.getElementsByTagName('script'))
+
+    if (allScripts.find(el => el.src === script)) {
+      return true
+    }
 
     if (!script) {
       return this.onLoad()
@@ -90,7 +95,7 @@ Context.childContextTypes = {
 }
 
 Context.defaultProps = {
-  script: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML',
+  // script: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML',
   input: 'ascii',
   delay: 0,
   options: {},
